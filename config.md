@@ -545,3 +545,52 @@ def command_clear():
 # этап 5
 ```
 
+# --------------------------------------------------
+# Команда rmdir — удаление пустого каталога
+# --------------------------------------------------
+
+def command_rmdir(arguments, state):
+    """Удаляет пустой каталог только из VFS в памяти."""
+
+    # Проверяем количество аргументов
+    if len(arguments) != 1:
+        print("Ошибка: использование rmdir <путь>")
+        return
+
+    # Получаем абсолютный путь к каталогу
+    target = normalize_path(arguments[0], state["cwd"])
+
+    directories = state["directories"]
+    files = state["files"]
+
+    # Запрещаем удаление корневого каталога
+    if target == "/":
+        print("Ошибка: нельзя удалить корневой каталог")
+        return
+
+    # Проверяем существование каталога
+    if target not in directories:
+        print(f"Ошибка: каталог не найден: {target}")
+        return
+
+    # Проверяем, что каталог пуст
+    for directory in directories:
+        if directory != target:
+            parent = directory.rsplit("/", 1)[0] or "/"
+
+            if parent == target:
+                print("Ошибка: каталог не пуст")
+                return
+
+    for file_path in files:
+        parent = file_path.rsplit("/", 1)[0] or "/"
+
+        if parent == target:
+            print("Ошибка: каталог не пуст")
+            return
+
+    # Удаляем каталог только из множества в памяти
+    directories.remove(target)
+
+    print(f"Каталог '{target}' успешно удалён")
+```
