@@ -1,0 +1,31 @@
+# Проверка команд первого этапа
+ls
+ls -l
+unknown_command
+
+# Проверка навигации по VFS
+pwd
+cd /home
+pwd
+ls
+cd user
+ls
+cat notes.txt
+
+# Проверка вложенных каталогов
+cd docs/projects
+pwd
+ls
+cat readme.txt
+
+# Проверка ошибочных путей
+cd /missing
+ls /missing
+cat missing.txt
+
+# Возвращение в корень
+cd /
+pwd
+ls
+
+// тест для 1 2 и 3 этапов
