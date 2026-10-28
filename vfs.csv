@@ -1,0 +1,12 @@
+path,type,content
+home,dir,
+home/user,dir,
+home/user/notes.txt,file,Hello from VFS
+home/user/docs,dir,
+home/user/docs/info.txt,file,Information from nested directory
+home/user/docs/projects,dir,
+home/user/docs/projects/readme.txt,file,This is a project file
+tmp,dir,
+tmp/test.txt,file,Temporary test file
+etc,dir,
+etc/config.txt,file,Example configuration
